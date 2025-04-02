@@ -28,13 +28,20 @@ jobs:
           echo "<html><head><title>SwitchON MultiAgent</title></head><body><h1>SwitchON MultiAgent Platform</h1><p>Welcome to the SwitchON MultiAgent platform!</p></body></html>" > dist/index.html
       
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1.2.0
+        uses: cloudflare/pages-action@v1.3.0  # Updated to v1.3.0
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: switchon-multiagent
           directory: dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Debug deployment
+        if: failure()
+        run: |
+          echo "Deployment failed"
+          echo "Checking Cloudflare Pages project status"
 
 
 
