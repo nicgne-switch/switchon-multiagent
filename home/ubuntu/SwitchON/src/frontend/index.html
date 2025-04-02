@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SwitchON MultiAgent</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #4F46E5;
+            --secondary-color: #10B981;
+            --dark-color: #1F2937;
+            --light-color: #F9FAFB;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+        }
+        
+        .hero-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #4F46E5 0%, #10B981 100%);
+            color: white;
+        }
+        
+        .onboarding-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        .step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .step {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .step.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .step.completed {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .step-line {
+            flex: 1;
+            height: 3px;
+            background-color: #e0e0e0;
+            margin: 0 10px;
+            margin-top: 15px;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            border-color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: var(--dark-color);">
+        <div class="container">
+            <a class="navbar-brand" href="#">⚡️ SwitchON</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Strategies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Campaigns</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Analytics</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">Strategic AI-Led Growth Engine for SaaS Startups</h1>
+            <p class="lead mb-5">Automate and optimize your entire B2B sales and marketing process with AI-powered multi-agent platform.</p>
+            <button class="btn btn-light btn-lg px-5">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Onboarding Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="onboarding-container">
+                <h2 class="text-center mb-4">Let's Get Started</h2>
+                <p class="text-center mb-5">Answer a few questions to help us build your revenue-backed Go-To-Market strategy.</p>
+                
+                <div class="step-indicator">
+                    <div class="step active">1</div>
+                    <div class="step-line"></div>
+                    <div class="step">2</div>
+                    <div class="step-line"></div>
+                    <div class="step">3</div>
+                    <div class="step-line"></div>
+                    <div class="step">4</div>
+                </div>
+                
+                <form id="onboardingForm">
+                    <!-- Step 1: Company Information -->
+                    <div class="form-step active" id="step1">
+                        <h3 class="mb-4">Company Information</h3>
+                        <div class="mb-3">
+                            <label for="companyName" class="form-label">Company Name</label>
+                            <input type="text" class="form-control" id="companyName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="industry" class="form-label">Industry</label>
+                            <select class="form-select" id="industry" required>
+                                <option value="" selected disabled>Select your industry</option>
+                                <option value="saas">SaaS</option>
+                                <option value="fintech">FinTech</option>
+                                <option value="healthtech">HealthTech</option>
+                                <option value="ecommerce">E-Commerce</option>
+                                <option value="edtech">EdTech</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="companySize" class="form-label">Company Size</label>
+                            <select class="form-select" id="companySize" required>
+                                <option value="" selected disabled>Select company size</option>
+                                <option value="1-10">1-10 employees</option>
+                                <option value="11-50">11-50 employees</option>
+                                <option value="51-200">51-200 employees</option>
+                                <option value="201-500">201-500 employees</option>
+                                <option value="501+">501+ employees</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-end mt-4">
+                            <button type="button" class="btn btn-primary next-step">Next</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 2: Financial Information -->
+                    <div class="form-step" id="step2">
+                        <h3 class="mb-4">Financial Information</h3>
+                        <div class="mb-3">
+                            <label for="arr" class="form-label">Annual Recurring Revenue (ARR)</label>
+                            <select class="form-select" id="arr" required>
+                                <option value="" selected disabled>Select ARR range</option>
+                                <option value="pre-revenue">Pre-revenue</option>
+                                <option value="0-100k">$0 - $100K</option>
+                                <option value="100k-500k">$100K - $500K</option>
+                                <option value="500k-1m">$500K - $1M</option>
+                                <option value="1m-5m">$1M - $5M</option>
+                                <option value="5m+">$5M+</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="ticketSize" class="form-label">Average Ticket Size</label>
+                            <select class="form-select" id="ticketSize" required>
+                                <option value="" selected disabled>Select average ticket size</option>
+                                <option value="0-1k">$0 - $1K</option>
+                                <option value="1k-5k">$1K - $5K</option>
+                                <option value="5k-10k">$5K - $10K</option>
+                                <option value="10k-50k">$10K - $50K</option>
+                                <option value="50k+">$50K+</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="salesCycle" class="form-label">Average Sales Cycle</label>
+                            <select class="form-select" id="salesCycle" required>
+                                <option value="" selected disabled>Select average sales cycle</option>
+                                <option value="0-30">0-30 days</option>
+                                <option value="30-60">30-60 days</option>
+                                <option value="60-90">60-90 days</option>
+                                <option value="90-180">90-180 days</option>
+                                <option value="180+">180+ days</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                            <button type="button" class="btn btn-primary next-step">Next</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3: Customer Information -->
+                    <div class="form-step" id="step3">
+                        <h3 class="mb-4">Ideal Customer Profile</h3>
+                        <div class="mb-3">
+                            <label for="customerIndustry" class="form-label">Target Customer Industry</label>
+                            <select class="form-select" id="customerIndustry" multiple required>
+                                <option value="technology">Technology</option>
+                                <option value="finance">Finance</option>
+                                <option value="healthcare">Healthcare</option>
+                                <option value="education">Education</option>
+                                <option value="retail">Retail</option>
+                                <option value="manufacturing">Manufacturing</option>
+                                <option value="professional_services">Professional Services</option>
+                            </select>
+                            <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple industries</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customerSize" class="form-label">Target Customer Size</label>
+                            <select class="form-select" id="customerSize" multiple required>
+                                <option value="smb">Small Business (1-100 employees)</option>
+                                <option value="midmarket">Mid-Market (101-1000 employees)</option>
+                                <option value="enterprise">Enterprise (1000+ employees)</option>
+                            </select>
+                            <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple sizes</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="decisionMakers" class="form-label">Key Decision Makers</label>
+                            <select class="form-select" id="decisionMakers" multiple required>
+                                <option value="ceo">CEO/Founder</option>
+                                <option value="cto">CTO/Technical Leader</option>
+                                <option value="cfo">CFO/Finance Leader</option>
+                                <option value="cmo">CMO/Marketing Leader</option>
+                                <option value="vp_sales">VP Sales/Sales Leader</option>
+                                <option value="product_manager">Product Manager</option>
+                                <option value="hr_leader">HR Leader</option>
+                            </select>
+                            <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple roles</small>
+                        </div>
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                            <button type="button" class="btn btn-primary next-step">Next</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4: Current Marketing -->
+                    <div class="form-step" id="step4">
+                        <h3 class="mb-4">Current Marketing & Sales</h3>
+                        <div class="mb-3">
+                            <label for="currentChannels" class="form-label">Current Acquisition Channels</label>
+                            <select class="form-select" id="currentChannels" multiple required>
+                                <option value="content">Content Marketing</option>
+                                <option value="seo">SEO</option>
+                                <option value="ppc">Paid Advertising</option>
+                                <option value="social">Social Media</option>
+                                <option value="email">Email Marketing</option>
+                                <option value="events">Events/Webinars</option>
+                                <option value="partnerships">Partnerships</option>
+                                <option value="cold_outreach">Cold Outreach</option>
+                                <option value="referrals">Referrals</option>
+                            </select>
+                            <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple channels</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="painPoints" class="form-label">Current Marketing/Sales Pain Points</label>
+                            <textarea class="form-control" id="painPoints" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="goals" class="form-label">Growth Goals for Next 12 Months</label>
+                            <textarea class="form-control" id="goals" rows="3" required></textarea>
+                        </div>
+                        <div class="d-flex justify-content-between mt-4">
+                            <button type="button" class="btn btn-secondary prev-step">Previous</button>
+                            <button type="submit" class="btn btn-success">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('onboardingForm');
+         
+(Content truncated due to size limit. Use line ranges to read in chunks)
