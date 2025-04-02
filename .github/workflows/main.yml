@@ -22,8 +22,11 @@ jobs:
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1.2.0
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    projectName: switchon-multiagent
+    directory: dist  # Make sure this line is included
+    gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           projectName: "switchon-multiagent"
 
         env:
