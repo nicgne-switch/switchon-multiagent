@@ -21,7 +21,10 @@ jobs:
         run: npm install
       
       - name: Create build directory
-        run: mkdir -p dist && cp -r src docs database README.md dist/
+        run: |
+          mkdir -p dist
+          touch dist/index.html
+          echo "<html><head><title>SwitchON MultiAgent</title></head><body><h1>SwitchON MultiAgent Platform</h1><p>Welcome to the SwitchON MultiAgent platform!</p></body></html>" > dist/index.html
       
       - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
@@ -29,4 +32,5 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages publish dist --project-name=switchon-multiagent
+
 
