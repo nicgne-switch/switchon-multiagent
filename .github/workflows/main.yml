@@ -16,23 +16,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '20'
-          cache: 'npm'
       
       - name: Install dependencies
         run: npm install
       
-      - name: Build application
-        run: npm run build
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
-          N8N_BASE_URL: ${{ secrets.N8N_BASE_URL }}
-          N8N_API_KEY: ${{ secrets.N8N_API_KEY }}
+      - name: Create build directory
+        run: mkdir -p dist && cp -r src docs database README.md dist/
       
-      - name: Deploy to production
+      - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: deploy
+          command: pages publish dist --project-name=switchon-multiagent
+
